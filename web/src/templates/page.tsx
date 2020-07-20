@@ -14,12 +14,14 @@ export interface PageProps {
     },
     meta: {}
   }
-  path: string
+  path?: string
+  preview?: boolean
 }
 
 const Page = ({
   path,
-  pageContext
+  pageContext,
+  preview = false
 }: PageProps) => {
   const {
     main: {
@@ -31,7 +33,10 @@ const Page = ({
 
   const url = slug.current === 'home' ? '' : path
   return (
-    <div className='mt1 ac'>
+    <div className='mt1 x ac'>
+      {preview && (
+        <div className='bcblue ac cw x p1'>This is a Preview</div>
+      )}
       <SEO metaInfo={meta} pagePath={url} />
       <div className='container--m mxa x al'>
         {RenderModules(modules)}

@@ -22,10 +22,12 @@ export interface ProductProps {
     meta: {}
     shopify: {}
   }
+  preview?: boolean
 }
 
 const Product = ({
-  pageContext
+  pageContext,
+  preview = false
 }: ProductProps) => {
   const setPage = useSetPage()
   const { main } = pageContext
@@ -44,7 +46,10 @@ const Product = ({
 
   const url = `products/${slug.current}`
   return (
-    <div className='ac'>
+    <div className='ac x'>
+      {preview && (
+        <div className='bcblue ac cw x p1'>This is a Preview</div>
+      )}
       <div dangerouslySetInnerHTML={{
           __html: `
             <script type="application/ld+json">
